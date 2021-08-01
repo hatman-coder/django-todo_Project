@@ -34,4 +34,5 @@ urlpatterns = [
     path('todo/<int:todo_pk>/complete', views.completetodo, name='completetodo'),
     path('todo/completed', views.completedtodos, name='completedtodos'),
     path('todo/<int:todo_pk>/delete', views.deletetodo, name='deletetodo'),
+    path('jsonview/', views.jsonview, name='jsonview'),
 ]

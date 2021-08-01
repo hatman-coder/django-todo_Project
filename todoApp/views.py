@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import IntegrityError
 from django.contrib.auth import login,logout,authenticate
 from todoApp.forms import TodoForm
@@ -104,3 +104,10 @@ def deletetodo(request, todo_pk):
     if request.method == 'POST':
         todo.delete()
         return redirect('currenttodos')
+
+def jsonview(request):
+    todos = todoModel.objects.filter(user=request.user)
+    data = {
+        'todos': list(todos.values())
+    }
+    return JsonResponse(data)
