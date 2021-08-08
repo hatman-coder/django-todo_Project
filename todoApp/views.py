@@ -17,7 +17,10 @@ def home(request):
 #SIGN UP USER PAGE
 def signupuser(request):
     if request.method == 'GET':
-        return render(request, 'todoApp/signupuser.html', {'form':UserCreationForm()})
+        if User.is_authenticated:
+            return redirect('createtodo')
+        else:
+            return render(request, 'todoApp/signupuser.html', {'form':UserCreationForm()})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
