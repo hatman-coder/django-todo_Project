@@ -17,7 +17,7 @@ def home(request):
 #SIGN UP USER PAGE
 def signupuser(request):
     if request.method == 'GET':
-        if User.is_authenticated:
+        if request.user.is_authenticated:
             return redirect('createtodo')
         else:
             return render(request, 'todoApp/signupuser.html', {'form':UserCreationForm()})
