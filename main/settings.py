@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
     'todoApp',
 ]
 
@@ -49,7 +52,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'main.urls'
 
@@ -67,6 +74,21 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+# ref https://www.geeksforgeeks.org/implement-token-authentication-using-django-rest-framework/
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # ref https://medium.com/@nico.candela/django-rest-framework-bearer-token-ac6c1dff00ef
+        'todoApp.auth.BearerAuthentication'
+    ]
+}
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
 ]
 
 WSGI_APPLICATION = 'main.wsgi.application'
@@ -127,3 +149,7 @@ LOGIN_URL = '/login'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]

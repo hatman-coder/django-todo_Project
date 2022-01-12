@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 class todoModel(models.Model):
     title = models.CharField(max_length=100)
-    memo = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    datecompleted = models.DateTimeField(null=True, blank=True)
+    dateCompleted = models.DateTimeField(null=True, blank=True)
     important = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
