@@ -8,7 +8,7 @@ from todoApp.views import *
 
 router = routers.DefaultRouter()
 
-router.register(r'users', todoApp.views.UserViewSet )
+router.register(r'users', todoApp.views.UserViewSet)
 router.register(r'users-me', todoApp.views.RequestedUserViewSet)
 router.register(r'todos', todoApp.views.TodoAppViewSet)
 
